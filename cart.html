@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Cart | My E-Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Your Cart</h1>
+    <nav>
+      <a href="products.html">Products</a>
+      <a href="checkout.html">Checkout</a>
+      <button id="logoutBtnCart">Logout</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="cart-area">
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-summary">
+        <h3>Total: $<span id="cartTotal">0</span></h3>
+        <button id="toCheckoutBtn" class="btn primary">Proceed to Checkout</button>
+      </div>
+    </section>
+  </main>
+<!-- GLASSMORPHISM LOGIN / SIGNUP POPUP (tabs) -->
+<div id="authModal" class="glass-modal" aria-hidden="true">
+  <div class="glass-card">
+    <button id="authClose" class="modal-close">×</button>
+
+    <div class="auth-tabs">
+      <button id="tabLogin" class="tab active">Login</button>
+      <button id="tabSignup" class="tab">Sign up</button>
+    </div>
+
+    <div id="loginPane" class="auth-pane">
+      <h2>Sign in</h2>
+      <form id="modalLoginForm">
+        <input id="modalEmail" type="email" placeholder="Email" required>
+        <input id="modalPass" type="password" placeholder="Password (min 6 chars)" required minlength="6">
+        <div style="margin-top:10px;">
+          <button type="submit" class="btn primary">Sign In</button>
+        </div>
+      </form>
+      <div class="divider">or</div>
+      <div class="social-row">
+        <button id="modalGoogle" class="btn social google">Continue with Google</button>
+        <button id="modalFacebook" class="btn social fb">Continue with Facebook</button>
+      </div>
+    </div>
+
+    <div id="signupPane" class="auth-pane" style="display:none;">
+      <h2>Create account</h2>
+      <form id="modalSignupForm">
+        <input id="signupEmail" type="email" placeholder="Email" required>
+        <input id="signupPass" type="password" placeholder="Password (min 6 chars)" required minlength="6">
+        <div style="margin-top:10px;">
+          <button type="submit" class="btn primary">Sign Up</button>
+        </div>
+      </form>
+      <div class="divider">or</div>
+      <div class="social-row">
+        <button id="signupGoogle" class="btn social google">Continue with Google</button>
+        <button id="signupFacebook" class="btn social fb">Continue with Facebook</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // render cart
+      window.cartPageRender && window.cartPageRender();
+
+      const logout = document.getElementById('logoutBtnCart');
+      if (logout) logout.addEventListener('click', () => window.appAuth.signOut());
+
+      const toCheckout = document.getElementById('toCheckoutBtn');
+      if (toCheckout) toCheckout.addEventListener('click', () => {
+        if ((JSON.parse(localStorage.getItem('ss_cart') || '[]')).length === 0) {
+          alert('Cart is empty');
+          return;
+        }
+        // redirect to checkout — checkout page will show login modal if needed
+        location.href = 'checkout.html';
+      });
+    });
+  </script>
+</body>
+</html>

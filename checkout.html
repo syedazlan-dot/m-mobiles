@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Checkout | My E-Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Checkout</h1>
+    <nav>
+      <a href="products.html">Products</a>
+      <a href="cart.html">Cart</a>
+      <button id="logoutBtnCheckout">Logout</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="checkout-area">
+      <form id="checkoutForm" class="checkout-form">
+        <h3>Delivery Details</h3>
+        <input id="fullName" type="text" placeholder="Full Name" required>
+        <input id="address" type="text" placeholder="Address" required>
+        <input id="city" type="text" placeholder="City" required>
+        <input id="postal" type="text" placeholder="Postal Code" required>
+
+        <h3>Payment Info</h3>
+        <select id="paymentMethod">
+          <option value="cod">Cash on Delivery</option>
+          <option value="card">Card (simulated)</option>
+        </select>
+
+        <div id="cardFields" style="display:none;">
+          <input id="cardNum" type="text" placeholder="Card Number" required>
+          <input id="cardExp" type="text" placeholder="Expiry Date (MM/YY)" required>
+          <input id="cardCvv" type="text" placeholder="CVV" required>
+        </div>
+
+        <div style="margin-top:12px;">
+          <button type="submit" class="btn primary">Continue & Place Order</button>
+        </div>
+      </form>
+
+      <aside class="order-summary">
+        <h3>Your Order</h3>
+        <div id="orderList"></div>
+        <h4>Total: $<span id="orderTotal">0</span></h4>
+      </aside>
+    </div>
+
+    <div id="orderResult" style="margin-top:20px;"></div>
+  </main>
+
+  <!-- GLASSMORPHISM LOGIN / SIGNUP POPUP (tabs) -->
+  <div id="authModal" class="glass-modal" aria-hidden="true">
+    <div class="glass-card">
+      <button id="authClose" class="modal-close">×</button>
+
+      <div class="auth-tabs">
+        <button id="tabLogin" class="tab active">Login</button>
+        <button id="tabSignup" class="tab">Sign up</button>
+      </div>
+
+      <div id="loginPane" class="auth-pane">
+        <h2>Sign in</h2>
+        <form id="modalLoginForm">
+          <input id="modalEmail" type="email" placeholder="Email" required>
+          <input id="modalPass" type="password" placeholder="Password (min 6 chars)" required minlength="6">
+          <div style="margin-top:10px;">
+            <button type="submit" class="btn primary">Sign In</button>
+          </div>
+        </form>
+        <div class="divider">or</div>
+        <div class="social-row">
+          <button id="modalGoogle" class="btn social google">Continue with Google</button>
+          <button id="modalFacebook" class="btn social fb">Continue with Facebook</button>
+        </div>
+      </div>
+
+      <div id="signupPane" class="auth-pane" style="display:none;">
+        <h2>Create account</h2>
+        <form id="modalSignupForm">
+          <input id="signupEmail" type="email" placeholder="Email" required>
+          <input id="signupPass" type="password" placeholder="Password (min 6 chars)" required minlength="6">
+          <div style="margin-top:10px;">
+            <button type="submit" class="btn primary">Sign Up</button>
+          </div>
+        </form>
+        <div class="divider">or</div>
+        <div class="social-row">
+          <button id="signupGoogle" class="btn social google">Continue with Google</button>
+          <button id="signupFacebook" class="btn social fb">Continue with Facebook</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // If user not logged in show modal; after login the form will be usable
+      if (!window.appAuth.isLoggedIn()) {
+        // show modal (checkout page requires login to actually place order)
+        window.showAuthModal();
+      } else {
+        // user logged in — show order summary and wire form
+        window.checkoutPageInit && window.checkoutPageInit();
+      }
+
+      const logout = document.getElementById('logoutBtnCheckout');
+      if (logout) logout.addEventListener('click', () => window.appAuth.signOut());
+    });
+  </script>
+</body>
+</html>

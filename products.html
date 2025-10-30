@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>M-Mobiles</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="header-left"><h1>M-Mobiles</h1></div>
+
+    <div class="header-center">
+      <input id="navSearch" type="search" placeholder="Search products..." aria-label="Search products">
+    </div>
+
+    <div class="header-right">
+      <nav>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart 🛒 (<span id="cartCount">0</span>)</a>
+        <button id="logoutBtn">Logout</button>
+      </nav>
+    </div>
+  </header>
+
+  <div class="filters">
+    <select id="sortSelect">
+      <option value="default">Sort by</option>
+      <option value="az">A-Z</option>
+      <option value="lowhigh">Price: Low to High</option>
+      <option value="highlow">Price: High to Low</option>
+      <option value="popular">Most Popular</option>
+    </select>
+  </div>
+
+  <main>
+    <div class="product-container" id="productContainer">
+      <!-- 15 Products (image src kept unchanged) -->
+      <!-- Mobiles -->
+      <div class="product" data-name="Galaxy A55" data-price="300" data-popular="4">
+        <img src="mobile/p1.jfif" alt="Galaxy A55">
+        <h3>Galaxy A55</h3>
+        <p>$300</p>
+        <button class="add-btn" data-name="Galaxy A55" data-price="300">Add to Cart</button>
+      </div>
+
+      <div class="product" data-name="iPhone 14" data-price="900" data-popular="5">
+        <img src="mobile/p2.jfif" alt="iPhone 14">
+        <h3>iPhone 14</h3>
+        <p>$900</p>
+        <button class="add-btn" data-name="iPhone 14" data-price="900">Add to Cart</button>
+      </div>
+
+      <div class="product" data-name="Redmi Note 13" data-price="250" data-popular="3">
+        <img src="mobile/p3.jfif" alt="Redmi Note 13">
+        <h3>Redmi Note 13</h3>
+        <p>$250</p>
+        <button class="add-btn" data-name="Redmi Note 13" data-price="250">Add to Cart</button>
+      </div>
+
+      <div class="product" data-name="OnePlus 12" data-price="700" data-popular="4">
+        <img src="mobile/p4.jfif" alt="OnePlus 12">
+        <h3>OnePlus 12</h3>
+        <p>$700</p>
+        <button class="add-btn" data-name="OnePlus 12" data-price="700">Add to Cart</button>
+      </div>
+
+      <div class="product" data-name="Pixel 8" data-price="650" data-popular="4">
+        <img src="mobile/p5.jfif" alt="Pixel 8">
+        <h3>Pixel 8</h3>
+        <p>$650</p>
+        <button class="add-btn" data-name="Pixel 8" data-price="650">Add to Cart</button>
+      </div>
+
+      <!-- Airbuds -->
+      <div class="product" data-name="Galaxy Buds" data-price="120" data-popular="5">
+        <img src="airbuds/a1.jfif" alt="Galaxy Buds">
+        <h3>Galaxy Buds</h3>
+        <p>$120</p>
+        <button class="add-btn" data-name="Galaxy Buds" data-price="120">Add to Cart</button>
+      </div>
+
+      <div class="product" data-name="AirPods Pro" data-price="200" data-popular="5">
+        <img src="airbuds/a2.jfif" alt="AirPods Pro">
+        <h3>AirPods Pro</h3>
+        <p>$200</p>
+        <button class="add-btn" data-name="AirPods Pro" data-price="200">Add to Cart</button>
+      </div>
+
+      <div class="product" data-name="Redmi AirDots" data-price="50" data-popular="3">
+        <img src="airbuds/a3.jfif" alt="Redmi AirDots">
+        <h3>Redmi AirDots</h3>
+        <p>$50</p>
+        <button class="add-btn" data-name="Redmi AirDots" data-price="50">Add to Cart</button>
+      </div>
+
+      <div class="product" data-name="OnePlus Buds Z2" data-price="80" data-popular="4">
+        <img src="airbuds/a4.jfif" alt="OnePlus Buds Z2">
+        <h3>OnePlus Buds Z2</h3>
+        <p>$80</p>
+        <button class="add-btn" data-name="OnePlus Buds Z2" data-price="80">Add to Cart</button>
+      </div>
+
+      <div class="product" data-name="Boat Airdopes" data-price="60" data-popular="3">
+        <img src="airbuds/a5.jfif" alt="Boat Airdopes">
+        <h3>Boat Airdopes</h3>
+        <p>$60</p>
+        <button class="add-btn" data-name="Boat Airdopes" data-price="60">Add to Cart</button>
+      </div>
+
+      <!-- Chargers -->
+      <div class="product" data-name="Samsung Charger" data-price="25" data-popular="4">
+        <img src="charger/c1.jfif" alt="Samsung Charger">
+        <h3>Samsung Charger</h3>
+        <p>$25</p>
+        <button class="add-btn" data-name="Samsung Charger" data-price="25">Add to Cart</button>
+      </div>
+
+      <div class="product" data-name="Apple Fast Charger" data-price="35" data-popular="5">
+        <img src="charger/c2.jfif" alt="Apple Fast Charger">
+        <h3>Apple Fast Charger</h3>
+        <p>$35</p>
+        <button class="add-btn" data-name="Apple Fast Charger" data-price="35">Add to Cart</button>
+      </div>
+
+      <div class="product" data-name="Mi Charger" data-price="20" data-popular="3">
+        <img src="charger/c3.jfif" alt="Mi Charger">
+        <h3>Mi Charger</h3>
+        <p>$20</p>
+        <button class="add-btn" data-name="Mi Charger" data-price="20">Add to Cart</button>
+      </div>
+
+      <div class="product" data-name="Anker Charger" data-price="40" data-popular="4">
+        <img src="charger/c4.jfif" alt="Anker Charger">
+        <h3>Anker Charger</h3>
+        <p>$40</p>
+        <button class="add-btn" data-name="Anker Charger" data-price="40">Add to Cart</button>
+      </div>
+
+      <div class="product" data-name="Baseus Charger" data-price="30" data-popular="3">
+        <img src="charger/c5.jfif" alt="Baseus Charger">
+        <h3>Baseus Charger</h3>
+        <p>$30</p>
+        <button class="add-btn" data-name="Baseus Charger" data-price="30">Add to Cart</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- IMAGE POPUP modal (glass blur background) -->
+  <div id="imageModal" class="image-modal" aria-hidden="true">
+    <div class="image-modal-card">
+      <button id="imageModalClose" class="image-modal-close" aria-label="Close image">✕</button>
+      <img id="imageModalImg" src="" alt="Product preview">
+    </div>
+  </div>
+<!-- GLASSMORPHISM LOGIN / SIGNUP POPUP (tabs) -->
+<div id="authModal" class="glass-modal" aria-hidden="true">
+  <div class="glass-card">
+    <button id="authClose" class="modal-close">×</button>
+
+    <div class="auth-tabs">
+      <button id="tabLogin" class="tab active">Login</button>
+      <button id="tabSignup" class="tab">Sign up</button>
+    </div>
+
+    <div id="loginPane" class="auth-pane">
+      <h2>Sign in</h2>
+      <form id="modalLoginForm">
+        <input id="modalEmail" type="email" placeholder="Email" required>
+        <input id="modalPass" type="password" placeholder="Password (min 6 chars)" required minlength="6">
+        <div style="margin-top:10px;">
+          <button type="submit" class="btn primary">Sign In</button>
+        </div>
+      </form>
+      <div class="divider">or</div>
+      <div class="social-row">
+        <button id="modalGoogle" class="btn social google">Continue with Google</button>
+        <button id="modalFacebook" class="btn social fb">Continue with Facebook</button>
+      </div>
+    </div>
+
+    <div id="signupPane" class="auth-pane" style="display:none;">
+      <h2>Create account</h2>
+      <form id="modalSignupForm">
+        <input id="signupEmail" type="email" placeholder="Email" required>
+        <input id="signupPass" type="password" placeholder="Password (min 6 chars)" required minlength="6">
+        <div style="margin-top:10px;">
+          <button type="submit" class="btn primary">Sign Up</button>
+        </div>
+      </form>
+      <div class="divider">or</div>
+      <div class="social-row">
+        <button id="signupGoogle" class="btn social google">Continue with Google</button>
+        <button id="signupFacebook" class="btn social fb">Continue with Facebook</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+  <script>
+    // products page specific wiring
+    document.addEventListener('DOMContentLoaded', () => {
+      // search in navbar
+      const navSearch = document.getElementById('navSearch');
+      if (navSearch) {
+        navSearch.addEventListener('input', (e) => {
+          const q = e.target.value.trim().toLowerCase();
+          document.querySelectorAll('.product').forEach(p => {
+            const name = (p.dataset.name || '').toLowerCase();
+            p.style.display = name.includes(q) ? '' : 'none';
+          });
+        });
+      }
+
+      // Add to cart buttons: add without requiring login
+      document.querySelectorAll('.add-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const name = btn.dataset.name;
+          const price = Number(btn.dataset.price);
+          // add immediately
+          window.addToCart(name, price);
+        });
+      });
+
+      // image click => open image modal
+      document.querySelectorAll('.product img').forEach(img => {
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', (e) => {
+          const src = img.src;
+          window.showImageModal(src);
+        });
+      });
+
+      // logout button
+      const logout = document.getElementById('logoutBtn');
+      if (logout) logout.addEventListener('click', () => window.appAuth.signOut());
+    });
+  
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+</script>
+  </script>
+</body>
+</html>
