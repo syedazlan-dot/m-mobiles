@@ -373,14 +373,14 @@ window.activateTab = activateTab;
         res.innerHTML = `<div style="background:#d1fae5;padding:12px;border-radius:8px;">
           <strong>Order placed successfully!</strong><br>
           Your order ID is <strong>${orderId}</strong>. (Demo)
-          <br><br><a href="products.html" class="btn">Continue Shopping</a>
+          <br><br><a href="index.html" class="btn">Continue Shopping</a>
         </div>`;
         orderList.innerHTML = '';
         if (orderTotal) orderTotal.textContent = '0';
         $('#checkoutForm')?.reset();
       } else {
         alert('Order placed: ' + orderId);
-        location.href = 'products.html';
+        location.href = 'index.html';
       }
     });
   };
