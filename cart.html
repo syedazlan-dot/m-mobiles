@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Cart | My E-Shop</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
   <header>
@@ -75,13 +76,17 @@
       // render cart
       window.cartPageRender && window.cartPageRender();
 
-      const logout = document.getElementById('logoutBtnCart');
-      if (logout) logout.addEventListener('click', () => window.appAuth.signOut());
+      // logout button - handled by updateLoginButton() function
 
       const toCheckout = document.getElementById('toCheckoutBtn');
       if (toCheckout) toCheckout.addEventListener('click', () => {
         if ((JSON.parse(localStorage.getItem('ss_cart') || '[]')).length === 0) {
-          alert('Cart is empty');
+          Swal.fire({
+            icon: 'warning',
+            title: 'Cart is empty',
+            text: 'Please add items to your cart before proceeding to checkout.',
+            confirmButtonText: 'OK'
+          });
           return;
         }
         // redirect to checkout — checkout page will show login modal if needed
