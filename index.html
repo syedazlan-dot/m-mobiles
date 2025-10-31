@@ -4,7 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>M-Mobiles</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
   <header>
@@ -16,7 +17,7 @@
 
     <div class="header-right">
       <nav>
-        <a href="products.html">Products</a>
+        <a href="index.html">Products</a>
         <a href="cart.html">Cart 🛒 (<span id="cartCount">0</span>)</a>
         <button id="logoutBtn">Logout</button>
       </nav>
@@ -232,14 +233,12 @@
         });
       });
 
-      // logout button
-      const logout = document.getElementById('logoutBtn');
-      if (logout) logout.addEventListener('click', () => window.appAuth.signOut());
+      // logout button - handled by updateLoginButton() function
     });
   
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
 </script>
   </script>
+ 
+
 </body>
 </html>

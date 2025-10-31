@@ -18,7 +18,12 @@
       const users = JSON.parse(localStorage.getItem('ss_users') || '{}');
       const u = users[email];
       if (!u || u.password !== pass) {
-        alert('Invalid credentials (demo).');
+       Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "Invalid credentials!",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
         return false;
       }
       localStorage.setItem('ss_user', JSON.stringify({ email: u.email, name: u.name }));
@@ -66,7 +71,11 @@
     if (found) found.qty += 1;
     else cart.push({ id, name, price: Number(price), qty: 1, img });
     saveCart(cart);
-    alert(`${name} added to cart.`);
+    Swal.fire({
+  title: "Added to Cart",
+  icon: "success",
+  draggable: true
+});
   };
 
   window.cartUpdateItem = function(id, qty){
@@ -275,8 +284,27 @@ window.activateTab = activateTab;
     container.querySelectorAll('.remove-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         const id = btn.dataset.id;
-        if (!confirm('Remove item?')) return;
-        window.cartRemoveItem(id);
+        Swal.fire({
+          title: "Remove Item?",
+          text: "Are you sure you want to remove this item from your cart?",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#3085d6",
+          confirmButtonText: "Yes, remove it!",
+          cancelButtonText: "Cancel"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.cartRemoveItem(id);
+            Swal.fire({
+              title: "Removed!",
+              text: "Item has been removed from your cart.",
+              icon: "success",
+              timer: 1500,
+              showConfirmButton: false
+            });
+          }
+        });
       });
     });
 
@@ -368,20 +396,21 @@ window.activateTab = activateTab;
       localStorage.removeItem('ss_cart');
       updateCartCount();
 
-      const res = $('#orderResult');
-      if (res) {
-        res.innerHTML = `<div style="background:#d1fae5;padding:12px;border-radius:8px;">
-          <strong>Order placed successfully!</strong><br>
-          Your order ID is <strong>${orderId}</strong>. (Demo)
-          <br><br><a href="products.html" class="btn">Continue Shopping</a>
-        </div>`;
-        orderList.innerHTML = '';
-        if (orderTotal) orderTotal.textContent = '0';
-        $('#checkoutForm')?.reset();
-      } else {
-        alert('Order placed: ' + orderId);
-        location.href = 'products.html';
-      }
+      // Clear the order display
+      if (orderList) orderList.innerHTML = '';
+      if (orderTotal) orderTotal.textContent = '0';
+      $('#checkoutForm')?.reset();
+
+      // Show SweetAlert confirmation
+      Swal.fire({
+        title: 'Order Placed Successfully!',
+        text: `Your order ID is ${orderId}. Thank you for your purchase!`,
+        icon: 'success',
+        confirmButtonText: 'Continue Shopping',
+        confirmButtonColor: '#28a745'
+      }).then((result) => {
+        location.href = 'index.html';
+      });
     });
   };
 
@@ -392,9 +421,27 @@ window.activateTab = activateTab;
       if (isLoggedIn) {
         btn.textContent = 'Logout';
         btn.onclick = () => {
-          if (confirm('Are you sure you want to log out?')) {
-            window.appAuth.signOut();
-          }
+          Swal.fire({
+            title: 'Log Out?',
+            text: 'Are you sure you want to log out?',
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, log out',
+            cancelButtonText: 'Cancel'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.appAuth.signOut();
+              Swal.fire({
+                title: 'Logged Out!',
+                text: 'You have been successfully logged out.',
+                icon: 'success',
+                timer: 1500,
+                showConfirmButton: false
+              });
+            }
+          });
         };
       } else {
         btn.textContent = 'Login';

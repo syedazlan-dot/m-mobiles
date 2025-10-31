@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Checkout | My E-Shop</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
   <header>
     <h1>Checkout</h1>
     <nav>
-      <a href="products.html">Products</a>
+      <a href="index.html">Products</a>
       <a href="cart.html">Cart</a>
       <button id="logoutBtnCheckout">Logout</button>
     </nav>
@@ -108,8 +109,7 @@
         window.checkoutPageInit && window.checkoutPageInit();
       }
 
-      const logout = document.getElementById('logoutBtnCheckout');
-      if (logout) logout.addEventListener('click', () => window.appAuth.signOut());
+      // logout button - handled by updateLoginButton() function
     });
   </script>
 </body>
